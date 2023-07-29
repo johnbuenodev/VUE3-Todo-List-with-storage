@@ -22,9 +22,13 @@
                 
                 <div class="all-todos">
 
-                    <div v-for="todo in todos" class="single-todo"
-                     :class=" todo.done == true ? 'done' : '' ">
-                        <p>{{ todo.text }} - {{ todo.done }}</p>
+                    <div 
+                     v-for="todo in todos" 
+                     class="single-todo"
+                     :class=" todo.done == true ? 'done' : '' "
+                     @click="todo.done = !todo.done;updateTaVsk()"
+                     >
+                        <p v-if="todo">{{ todo.text }} - {{ todo.done }}</p>
                     </div>
 
                     <!-- <div class="single-todo done">
@@ -39,7 +43,7 @@
 
                 </div>
 
-                <button class="clear">Limpar tudo</button>
+                <button class="clear" v-if="todos.length" @click="deleteAllTask()">Limpar tudo</button>
 
                 <input type="text" placeholder="Escreva uma nova tarefa..." v-model="newTodo.text">
                 <button class="add" @click="addNewtodo()">Adicionar</button>
